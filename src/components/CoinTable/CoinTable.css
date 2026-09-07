@@ -1,0 +1,12 @@
+.coin-table-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+.coin-table-wrapper .ant-col {
+  border: solid 1px;
+  border-right-width: 0;
+  padding: 5px;
+}
+.coin-table-wrapper .ant-col:last-of-type {
+  border-right-width: 1px;
+}

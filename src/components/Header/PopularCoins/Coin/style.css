@@ -1,0 +1,7 @@
+.header-coin,
+.header-coin:hover {
+  color: black;
+}
+.header-coin-title {
+  font-weight: bold;
+}

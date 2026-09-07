@@ -1,0 +1,19 @@
+.coin-row {
+  text-decoration: none;
+  color: black;
+}
+.coin-row-wrapper {
+  text-align: center;
+}
+.coin-row-name {
+  text-align: left;
+}
+.coin-row-wrapper .ant-col {
+  border: solid 1px;
+  border-right-width: 0;
+  border-top-width: 0;
+  padding: 5px;
+}
+.coin-row-wrapper .ant-col:last-of-type {
+  border-right-width: 1px;
+}
