@@ -3,9 +3,13 @@ import { CoinRow } from "./CoinRow";
 import "./CoinTable.css";
 import { useEffect, useState } from "react";
 
-import { loadCoinList } from "../../services/coinApi";
-import { useDispatch, useSelector } from "react-redux";
-import { addCoinsToRedux, selectCoins } from "../../redux/slices/coinsSlice";
+import {
+  fetchCoins,
+  selectCoins,
+  selectError,
+  selectLoading,
+} from "../../redux/slices/coinsSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 export type CoinTableRowType = {
   onAddClick: (coin: string) => void;
 };
@@ -38,29 +42,15 @@ export type CoinInListType = {
   total_volume: number;
 };
 export const CoinTable: React.FC<CoinTableRowType> = ({ onAddClick }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const coins = useSelector(selectCoins);
+  const coins = useAppSelector(selectCoins);
+  const loading = useAppSelector(selectLoading);
+  const error = useAppSelector(selectError);
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        setLoading(true);
-        const responce = await loadCoinList({ page });
-        dispatch(addCoinsToRedux(responce));
-      } catch (e) {
-        setError(true);
-        const error = e as Error;
-        console.log(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    load();
+    dispatch(fetchCoins({ page }));
   }, [page, dispatch]);
 
   return (

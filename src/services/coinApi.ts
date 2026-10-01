@@ -6,7 +6,10 @@ const instance = axios.create({
   timeout: 1000,
   headers: { "x-cg-demo-api-key": "CG-u2EU6sKP3S3S3Dk6HzLVdKXP" },
 });
-type LoadingCoinListType = { page: number } | { id: string };
+export type LoadingCoinListType =
+  | { page: number }
+  | { id: string }
+  | { per_page: number };
 
 export const loadCoinList = async (param: LoadingCoinListType) => {
   try {
@@ -15,6 +18,8 @@ export const loadCoinList = async (param: LoadingCoinListType) => {
       temp = { vs_currency: "usd", page: param.page, per_page: 10 };
     } else if ("id" in param) {
       temp = { vs_currency: "usd", ids: param.id };
+    } else if ("per_page" in param) {
+      temp = { vs_currency: "usd", per_page: 3 };
     }
     const responce = await instance.get<CoinInListType[]>("/coins/markets", {
       params: temp,
@@ -43,6 +48,7 @@ export const loadCoinHistory = async (id: string) => {
         },
       },
     );
+
 
     return responce.data.prices;
   } catch (e) {

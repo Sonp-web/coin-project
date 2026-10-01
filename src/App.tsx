@@ -3,7 +3,7 @@ import "./App.css";
 import { Home } from "./pages/Home/Home";
 import { Coin } from "./pages/Coin/Coin";
 import { MainLayout } from "./layouts/MainLayout/MainLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   refreshCoins,
@@ -13,20 +13,20 @@ import {
 function App() {
   const portfolioCoins = useSelector(selectPortfolio);
   const dispatch = useDispatch();
-  const [isInititalStorage, setIsInitialStorage] = useState<boolean>(false);
+  const isInititalStorage = useRef<boolean>(false);
   useEffect(() => {
     const res = localStorage.getItem("portfolioCoins");
     if (res) {
       const temp: PortfolioCoinType[] = JSON.parse(res);
       dispatch(refreshCoins(temp));
-      setIsInitialStorage(true)
+      isInititalStorage.current = true;
     }
   }, [dispatch]);
   useEffect(() => {
     if (isInititalStorage) {
       localStorage.setItem("portfolioCoins", JSON.stringify(portfolioCoins));
     }
-  }, [portfolioCoins,isInititalStorage]);
+  }, [portfolioCoins, isInititalStorage]);
   return (
     <Routes>
       <Route element={<MainLayout />}>

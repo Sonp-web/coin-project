@@ -2,30 +2,30 @@ import { Form, InputNumber, Button } from "antd";
 import type { FormProps } from "antd";
 import { useDispatch } from "react-redux";
 import { addCoin } from "../../redux/slices/portfolioSlice";
-import { useParams } from "react-router-dom";
 
 type FieldType = {
   count: number;
 };
 type CoinFormProps = {
   buyingPrice: number;
+  id: string;
 };
-export const CoinForm: React.FC<CoinFormProps> = ({ buyingPrice }) => {
+export const CoinForm: React.FC<CoinFormProps> = ({ id, buyingPrice }) => {
   const dispatch = useDispatch();
-  const params = useParams();
+  const [form] = Form.useForm<FieldType>();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    if (params.id) {
-      dispatch(
-        addCoin({
-          id: params.id,
-          count: values.count,
-          buyingPrice: buyingPrice,
-        }),
-      );
-    }
+    dispatch(
+      addCoin({
+        id: id,
+        count: values.count,
+        buyingPrice: buyingPrice,
+      }),
+    );
+    form.resetFields();
   };
   return (
     <Form
+      form={form}
       layout="vertical"
       className="add-coin-modal-form"
       onFinish={onFinish}

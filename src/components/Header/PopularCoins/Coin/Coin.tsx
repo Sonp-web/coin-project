@@ -5,8 +5,9 @@ type CoinType = {
   price: number;
 };
 export const Coin: React.FC<CoinType> = ({ name, price }) => {
+  const id = name[0].toLowerCase() + name.slice(1);
   return (
-    <Link className="header-coin" to={`/coin/${name}`}>
+    <Link className="header-coin" to={`/coin/${id}`}>
       <p className="header-coin-title">
         {name[0].toUpperCase() + name.slice(1)}
       </p>

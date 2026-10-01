@@ -2,38 +2,34 @@ import { useParams } from "react-router-dom";
 import { CoinForm } from "../../components/CoinForm/CoinForm";
 import { CoinInfo } from "./CoinInfo/CoinInfo";
 import "./style.css";
-import { useEffect, useState } from "react";
-import { loadCoinHistory, loadCoinList } from "../../services/coinApi";
-import type { CoinInListType } from "../../components/CoinTable/CoinTable";
+import { useEffect } from "react";
 import { LinePlot } from "./Line";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import {
+  fetchCoin,
+  fetchCoinHistory,
+  selectCoin,
+  selectCoinHistory,
+  selectErrorCoinHistory,
+  selectLoadingCoinHistory,
+} from "../../redux/slices/coinSlice";
+
 export const Coin: React.FC = () => {
   const params = useParams();
 
-  const [coin, setCoin] = useState<CoinInListType | null>(null);
-  const [coinHistory, setCoinHistory] = useState<number[][] | null>(null);
-  const [loadingCoinHistory, setLoadingCoinHistory] = useState<boolean>(true);
-  const [errorLoading, setErrorLoading] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const coin = useAppSelector(selectCoin);
+  const coinHistory = useAppSelector(selectCoinHistory);
+  const loadingCoinHistory = useAppSelector(selectLoadingCoinHistory);
+  const errorLoading = useAppSelector(selectErrorCoinHistory);
 
   useEffect(() => {
     if (params.id) {
       const id = params.id;
-      const load = async () => {
-        try {
-          const responce = await loadCoinList({ id: id });
-          setCoin(responce[0]);
-
-          const history = await loadCoinHistory(id);
-          setCoinHistory(history);
-          setLoadingCoinHistory(false);
-        } catch (e) {
-          const error = e as Error;
-          console.log(error.message);
-          setErrorLoading(true);
-        }
-      };
-      load();
+      dispatch(fetchCoin({ id: id }));
+      dispatch(fetchCoinHistory(id));
     }
-  }, [params.id]);
+  }, [params.id, dispatch]);
 
   return (
     <>
@@ -45,7 +41,7 @@ export const Coin: React.FC = () => {
             </span>
             {" " + coin.name}
           </h2>
-          <CoinForm buyingPrice={coin.current_price} />
+          <CoinForm id={coin.id} buyingPrice={coin.current_price} />
           <CoinInfo coin={coin} />
           {coinHistory && !loadingCoinHistory ? (
             <LinePlot data={coinHistory} />
