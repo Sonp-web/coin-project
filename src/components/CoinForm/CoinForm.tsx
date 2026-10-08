@@ -27,7 +27,7 @@ export const CoinForm: React.FC<CoinFormProps> = ({ id, buyingPrice }) => {
     <Form
       form={form}
       layout="vertical"
-      className="add-coin-modal-form"
+      className="card add-coin-modal-form"
       onFinish={onFinish}
       initialValues={{ count: 0 }}
     >

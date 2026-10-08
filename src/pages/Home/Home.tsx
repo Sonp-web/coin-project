@@ -6,6 +6,7 @@ import {
 } from "../../components/CoinTable/CoinTable";
 import { useSelector } from "react-redux";
 import { selectCoins } from "../../redux/slices/coinsSlice";
+import "./Home.css";
 
 export const Home: React.FC = () => {
   const [isAddCoinModal, setIsAddCoinModal] = useState<boolean>(false);
@@ -15,7 +16,6 @@ export const Home: React.FC = () => {
     setIsAddCoinModal(true);
 
     const temp = coins.find((item) => item.name == coin);
-    console.log(temp);
 
     if (temp) {
       setSelectedCoin(temp);
@@ -25,11 +25,13 @@ export const Home: React.FC = () => {
     setIsAddCoinModal(false);
   };
   return (
-    <>
+    <div className="home-wrapper">
+      <h1 className="home-title">Криптовалюты</h1>
+      <p className="home-description">Топ-100 по капитализации</p>
       <CoinTable onAddClick={onAddClick} />
       {isAddCoinModal && selectedCoin != null ? (
         <AddCoinModal coin={selectedCoin} handleClose={handleClose} />
       ) : null}
-    </>
+    </div>
   );
 };

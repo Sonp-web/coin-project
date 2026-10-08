@@ -1,0 +1,22 @@
+.portfolio-value {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 135%;
+  border-radius: 8px;
+  padding: 4px 8px;
+  height: 24px;
+  white-space: nowrap;
+}
+.portfolio-green {
+  color: var(--color-up);
+  background-color: var(--color-up-soft);
+}
+.portfolio-red {
+  color: var(--color-down);
+  background-color: var(--color-down-soft);
+}
+@media (max-width: 767px) {
+  .portfolio-value {
+    display: none;
+  }
+}

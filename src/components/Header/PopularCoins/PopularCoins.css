@@ -1,0 +1,31 @@
+.popular-coins-title {
+  line-height: 135%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.header-list-coin {
+  gap: 40px;
+  align-items: center;
+  color: var(--color-muted);
+
+  font-weight: 500;
+  font-size: 12px;
+}
+@media (max-width: 1199px) {
+  .popular-coins-title {
+    display: none;
+  }
+  .header-list-coin {
+    gap: 12px;
+    width: 100%;
+    order: 10;
+  }
+}
+@media (max-width: 767px) {
+  .header-list-coin {
+    margin: 0 -16px;
+    padding: 0 16px;
+    width: calc(100% + 32px);
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,16 @@
+.coin-row-logo {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: var(--color-accent-soft);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    flex-shrink: 0;
+}
+.coin-row-logo-symbol {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 135%;
+  color: var(--color-accent);
+}

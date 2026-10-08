@@ -53,20 +53,20 @@ export const LinePlot: React.FC<LinePlotProps> = ({
     if (yAxisRef.current) {
       d3.select(yAxisRef.current).call(yAxis);
     }
-  }, [xAxis, yAxis]);
+  }, [xAxis, yAxis, extent]);
   if (extent[0] === undefined || extent[1] === undefined) {
     return null;
   }
 
   const line = d3
     .line<number>()
-    .x((d, i) => {
+    .x((_d, i) => {
       return x(date[i]);
     })
     .y((d) => y(d));
 
   return (
-    <svg width={width} height={height}>
+    <svg width={width} height={height} className="card">
       <g ref={xAxisRef} transform={`translate(0,${height - marginBottom})`} />
       <g ref={yAxisRef} transform={`translate(${marginLeft},0)`} />
       <path

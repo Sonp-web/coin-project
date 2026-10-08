@@ -1,0 +1,18 @@
+.header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-line);
+}
+.header-wrapper {
+  display: flex;
+  height: 72px;
+  align-items: center;
+}
+@media (max-width: 1199px) {
+  .header-wrapper {
+    height: auto;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    padding-bottom: 16px;
+    gap: 8px;
+  }
+}

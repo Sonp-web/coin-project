@@ -1,0 +1,34 @@
+.logo-wrapper,
+.logo-wrapper:hover {
+  text-decoration: none;
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-accent);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-icon-text {
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 135%;
+  color: #fff;
+}
+.logo-text {
+  font-weight: 800;
+  font-size: 18px;
+}
+@media (max-width: 1199px) {
+}
+@media (max-width: 767px) {
+  .logo-text {
+    font-size: 16px;
+  }
+}

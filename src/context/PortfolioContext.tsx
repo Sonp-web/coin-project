@@ -16,6 +16,7 @@ type PortfolioContextType = {
   value: number;
   finalValue: number;
   profit: number;
+  profitPercent: number;
 };
 
 export const PortfolioContext = createContext<PortfolioContextType | null>(
@@ -60,11 +61,14 @@ export const PortfolioProvider = ({ children }: PortfolioProviderProps) => {
     return acc + item.count * item.buyingPrice;
   }, 0);
 
-  const finalValue = updatePortfolioCoins.reduce((acc, item) => {
-    return acc + item.count * item.actualInfoCoin;
-  }, 0);
+  const finalValue = +updatePortfolioCoins
+    .reduce((acc, item) => {
+      return acc + item.count * item.actualInfoCoin;
+    }, 0)
+    .toFixed(2);
 
   const profit = finalValue - value;
+  const profitPercent = value != 0 ? (profit / value) * 100 : 0;
   return (
     <PortfolioContext.Provider
       value={{
@@ -72,6 +76,7 @@ export const PortfolioProvider = ({ children }: PortfolioProviderProps) => {
         value,
         finalValue,
         profit,
+        profitPercent,
       }}
     >
       {children}

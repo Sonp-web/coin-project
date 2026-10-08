@@ -1,0 +1,41 @@
+.header-coin,
+.header-coin:hover {
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.header-coin-price {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 135%;
+  color: var(--color-ink);
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+.header-coin-price-title {
+  white-space: nowrap;
+}
+.header-coin-percent-green {
+  color: var(--color-up);
+}
+.header-coin-percent-red {
+  color: var(--color-down);
+}
+.header-coin-percent {
+  font-weight: 600;
+}
+@media (max-width: 1199px) {
+  .header-coin {
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    padding: 10px 12px;
+    flex: 1;
+  }
+}
+@media (max-width: 767px) {
+  .header-coin {
+    flex-shrink: 0;
+    flex-basis: 150px;
+  }
+}

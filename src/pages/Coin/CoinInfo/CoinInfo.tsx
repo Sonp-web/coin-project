@@ -1,12 +1,12 @@
 import { Col, Row } from "antd";
-import "./style.css";
+import "./CoinInfo.css";
 import type { CoinInListType } from "../../../components/CoinTable/CoinTable";
 type CoinInfoPropsType = {
   coin: CoinInListType;
 };
 export const CoinInfo: React.FC<CoinInfoPropsType> = ({ coin }) => {
   return (
-    <div className="coin-info-row-wrapper">
+    <div className="card coin-info-row-wrapper">
       <Row className="coin-title-row">
         <Col span={14}>Информация</Col>
         <Col span={10}>Данные о валюте</Col>

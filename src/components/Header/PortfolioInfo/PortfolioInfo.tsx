@@ -1,7 +1,7 @@
-import { WalletOutlined } from "@ant-design/icons";
-import { Flex } from "antd";
-import "./style.css";
+import { CreditCardOutlined } from "@ant-design/icons";
+import "./PortfolioInfo.css";
 import { usePortfolio } from "../../../hooks/usePortfolio";
+import { PortfolioValue } from "./PorfrolioValue/PortfolioValue";
 type PortfolioInfoType = {
   openPortfolioModal: () => void;
   closePortfolioModal: () => void;
@@ -12,12 +12,15 @@ export const PortfolioInfo: React.FC<PortfolioInfoType> = ({
   const { finalValue } = usePortfolio();
 
   return (
-    <Flex onClick={openPortfolioModal} className="portfolio-info-wrapper">
-      <WalletOutlined className="portfolio-info-icon" />
+    <button onClick={openPortfolioModal} className="portfolio-info-wrapper">
+      <CreditCardOutlined className="portfolio-info-icon" />
       <div>
-        <p>Итого:</p>
-        <p className="portfolio-icon-value">{finalValue} USD</p>
+        <p className="portfolio-info-title">Портфель</p>
+        <p className="portfolio-icon-value">
+          {finalValue.toLocaleString("ru-RU")} $
+        </p>
       </div>
-    </Flex>
+      <PortfolioValue />
+    </button>
   );
 };

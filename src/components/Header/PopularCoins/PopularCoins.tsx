@@ -1,6 +1,6 @@
 import { Flex } from "antd";
 import { Coin } from "./Coin/Coin";
-import "./style.css";
+import "./PopularCoins.css";
 import { useEffect, useState } from "react";
 import { loadCoinList } from "../../../services/coinApi";
 import type { CoinInListType } from "../../CoinTable/CoinTable";
@@ -19,19 +19,18 @@ export const PopularCoins: React.FC = () => {
     load();
   }, []);
   return (
-    <div>
-      <h4 className="popular-coins-title">Популярные монеты:</h4>
-      <Flex className="header-list-coin">
-        {popularCoins.map((item) => {
-          return (
-            <Coin
-              name={item.name}
-              price={item.current_price}
-              key={item.id}
-            ></Coin>
-          );
-        })}
-      </Flex>
-    </div>
+    <Flex className="header-list-coin">
+      <p className="popular-coins-title">Популярные</p>
+      {popularCoins.map((item) => {
+        return (
+          <Coin
+            name={item.name}
+            price={item.current_price}
+            percent={item.price_change_percentage_24h}
+            key={item.id}
+          />
+        );
+      })}
+    </Flex>
   );
 };
