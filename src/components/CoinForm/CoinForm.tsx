@@ -2,15 +2,21 @@ import { Form, InputNumber, Button } from "antd";
 import type { FormProps } from "antd";
 import { useDispatch } from "react-redux";
 import { addCoin } from "../../redux/slices/portfolioSlice";
-
+import "./CoinForm.css";
+import { formatPrice } from "../../utils/formatPrice";
 type FieldType = {
   count: number;
 };
 type CoinFormProps = {
   buyingPrice: number;
   id: string;
+  onCancel?: () => void;
 };
-export const CoinForm: React.FC<CoinFormProps> = ({ id, buyingPrice }) => {
+export const CoinForm: React.FC<CoinFormProps> = ({
+  id,
+  buyingPrice,
+  onCancel,
+}) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm<FieldType>();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
@@ -23,19 +29,23 @@ export const CoinForm: React.FC<CoinFormProps> = ({ id, buyingPrice }) => {
     );
     form.resetFields();
   };
+  const count = Form.useWatch("count", form);
+  const endValue = (count ?? 0) * buyingPrice;
   return (
     <Form
       form={form}
       layout="vertical"
-      className="card add-coin-modal-form"
+      className="coin-form-add"
       onFinish={onFinish}
       initialValues={{ count: 0 }}
     >
       <Form.Item
         name="count"
-        label="Введите количество:"
+        label="Количество"
+        className="coin-form-add-label"
+        extra={<p className="coin-form-add-input-descr">Больше 0, шаг 0,1</p>}
         rules={[
-          { required: true, message: "Please input count!" },
+          { required: true, message: "Пожалуйста введите число!" },
           {
             validator: (_, value) =>
               value > 0
@@ -44,11 +54,30 @@ export const CoinForm: React.FC<CoinFormProps> = ({ id, buyingPrice }) => {
           },
         ]}
       >
-        <InputNumber min={0} step={0.1} />
+        <InputNumber className="coin-form-add-input" min={0} step={0.1} />
       </Form.Item>
-      <Button htmlType="submit" type="primary">
-        Добавить
-      </Button>
+      <div className="coin-form-add-price">
+        <p className="coin-form-add-price-descr">Итого</p>
+        <p className="coin-form-add-price-value">{formatPrice(endValue)} $</p>
+      </div>
+      <div className="coin-form-add-buttons">
+        {onCancel ? (
+          <Button
+            onClick={onCancel}
+            type="primary"
+            className="coin-form-add-button coin-form-add-button-cancel"
+          >
+            Отмена
+          </Button>
+        ) : null}
+        <Button
+          htmlType="submit"
+          type="primary"
+          className="coin-form-add-button"
+        >
+          Добавить
+        </Button>
+      </div>
     </Form>
   );
 };

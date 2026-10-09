@@ -1,0 +1,57 @@
+.coin-form-add-label {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 135%;
+  color: var(--color-ink);
+  margin-bottom: 0;
+}
+.coin-form-add-input {
+  width: 100%;
+}
+.coin-form-add-input-descr {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 135%;
+  color: var(--color-muted);
+  margin-top: 6px;
+}
+.coin-form-add-price {
+  margin-top: 16px;
+  border-top: 1px solid var(--color-line);
+  padding: 12px 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 135%;
+  color: var(--color-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.coin-form-add-price-value {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 135%;
+  color: var(--color-ink);
+}
+.coin-form-add-buttons {
+  display: flex;
+  margin-top: 16px;
+  gap: 12px;
+}
+.coin-form-add-button {
+  display: block;
+  flex: 1;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 135%;
+  color: var(--color-surface);
+}
+.coin-form-add-button-cancel {
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+  background-color: var(--color-surface);
+  border-radius: 10px;
+  padding: 0 20px;
+}

@@ -1,0 +1,38 @@
+.line-plot-wrapper {
+  min-width: 0;
+  grid-area: line;
+}
+
+.line-plot {
+  margin-top: 16px;
+  min-width: 0;
+  overflow: hidden;
+}
+.line-plot-svg {
+  display: block;
+  width: 100%;
+}
+.line-plot-grid {
+  stroke: var(--color-line);
+}
+.line-plot-label {
+  fill: var(--color-muted);
+  font-weight: 500;
+  font-size: 11px;
+}
+.line-plot-area {
+  fill: var(--color-accent);
+  fill-opacity: 0.08;
+}
+.line-plot-line {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.line-plot-dot {
+  fill: var(--color-accent);
+  stroke: var(--color-surface);
+  stroke-width: 2;
+}

@@ -32,6 +32,9 @@
 .coin-table-pagination {
   margin-top: 24px;
 }
+.coin-table-name-symbol {
+  color: var(--color-muted);
+}
 @media (max-width: 1199px) {
   .coin-table-wrapper {
     margin-top: 16px;

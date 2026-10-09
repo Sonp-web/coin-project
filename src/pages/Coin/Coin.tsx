@@ -16,6 +16,7 @@ import {
   selectLoadingCoinHistory,
 } from "../../redux/slices/coinSlice";
 import { formatPrice } from "../../utils/formatPrice";
+import { formatNumber } from "../../utils/formatNumber";
 
 export const Coin: React.FC = () => {
   const params = useParams();
@@ -42,7 +43,7 @@ export const Coin: React.FC = () => {
   return (
     <div className="coin-wrapper">
       <Link to="/" className="coin-link-to-home">
-        <ArrowLeftOutlined className="" />
+        <ArrowLeftOutlined />
         Все монеты
       </Link>
       {coin ? (
@@ -63,7 +64,7 @@ export const Coin: React.FC = () => {
                 {formatPrice(coin.current_price)} $
               </p>
               <p className={percentClassName}>
-                {formatPrice(coin.price_change_percentage_24h)} %
+                {formatNumber(coin.price_change_percentage_24h)} %
               </p>
             </div>
           </div>
@@ -71,8 +72,11 @@ export const Coin: React.FC = () => {
             {coinHistory && !loadingCoinHistory ? (
               <LinePlot data={coinHistory} />
             ) : null}
+            <div className="card  coin-form-wrapper">
+              <p className="card-title">Купить {coin.name}</p>
+              <CoinForm id={coin.id} buyingPrice={coin.current_price} />
+            </div>
             <CoinInfo coin={coin} />
-            <CoinForm id={coin.id} buyingPrice={coin.current_price} />
           </div>
         </>
       ) : errorLoading ? (

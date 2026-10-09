@@ -14,7 +14,6 @@
 }
 .coin-descr {
   margin-top: 4px;
-  height: 86px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -75,4 +74,46 @@
   margin-top: 24px;
   display: grid;
   grid-template-columns: 1fr 380px;
+  gap: 24px;
+  align-items: start;
+  grid-template-areas:
+    "line form"
+    "info .";
+}
+.coin-form-wrapper {
+  grid-area: form;
+}
+.coin-form-add {
+  margin-top: 16px;
+}
+@media (max-width: 1199px) {
+  .coin-about-wrapper {
+    grid-template-columns: 280px 1fr;
+    grid-template-areas:
+      "line line"
+      "form info";
+  }
+}
+@media (max-width: 767px) {
+  .coin-about-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "form"
+      "line"
+      "info";
+  }
+  .coin-descr {
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+  }
+  .coin-descr-title {
+    font-size: 24px;
+  }
+  .coin-descr-price {
+    font-size: 24px;
+  }
+  .coin-about-wrapper {
+    gap: 16px;
+  }
 }

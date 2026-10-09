@@ -1,14 +1,4 @@
 .portfolio-row-wrapper {
   text-decoration: none;
-  color: black;
-}
-.portfolio-row .ant-col {
-  border: solid 1px;
-  border-right-width: 0;
-  border-top-width: 0;
-  padding: 5px;
-  text-align: center;
-}
-.portfolio-row .ant-col:last-of-type {
-  border-right-width: 1px;
+  color: inherit;
 }

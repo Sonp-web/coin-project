@@ -1,10 +1,13 @@
-import { Col, Row } from "antd";
 import { PortfolioRow } from "./PortfolioRow";
 import "./PortfolioTable.css";
 import { type PortfolioCoinType } from "../../../redux/slices/portfolioSlice";
 
 type PortfolioTableType = {
-  coins: (PortfolioCoinType & { actualInfoCoin: number })[];
+  coins: (PortfolioCoinType & {
+    actualInfoCoin: number;
+    name: string;
+    symbol: string;
+  })[];
   closePortfolioModal: () => void;
 };
 export const PortfolioTable: React.FC<PortfolioTableType> = ({
@@ -12,17 +15,31 @@ export const PortfolioTable: React.FC<PortfolioTableType> = ({
   closePortfolioModal,
 }) => {
   return (
-    <>
-      <Row className="portfolio-table">
-        <Col span={2}>Название</Col>
-        <Col span={4}>Средняя цена покупки</Col>
-        <Col span={4}>Актуальня цена </Col>
-        <Col span={2}>Кол-во</Col>
-        <Col span={4}>Средняя стоимость покупок </Col>
-        <Col span={4}>Актуальная стоимость</Col>
-        <Col span={3}>Разница</Col>
-        <Col span={1}></Col>
-      </Row>
+    <div className="portfolio-table-wrapper">
+      <div className="portfolio-table portfolio-table-first">
+        <div className="portfolio-table-item portfolio-table-item-name">
+          Монета
+        </div>
+        <div className="portfolio-table-item portfolio-table-item-count">
+          Кол-во
+        </div>
+        <div className="portfolio-table-item portfolio-table-item-price">
+          Цена покупки
+        </div>
+        <div className="portfolio-table-item portfolio-table-item-current-price">
+          Цена сейчас
+        </div>
+        <div className="portfolio-table-item portfolio-table-item-value">
+          Вложено
+        </div>
+        <div className="portfolio-table-item portfolio-table-item-end-value">
+          Стоимость
+        </div>
+        <div className="portfolio-table-item portfolio-table-item-profit">
+          Разница
+        </div>
+        <div className="portfolio-table-item portfolio-table-item-delete"></div>
+      </div>
       {coins.map((coin) => (
         <PortfolioRow
           coin={coin}
@@ -30,6 +47,6 @@ export const PortfolioTable: React.FC<PortfolioTableType> = ({
           closePortfolioModal={closePortfolioModal}
         />
       ))}
-    </>
+    </div>
   );
 };

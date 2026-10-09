@@ -12,7 +12,11 @@ type PortfolioProviderProps = {
 };
 
 type PortfolioContextType = {
-  updatePortfolioCoins: (PortfolioCoinType & { actualInfoCoin: number })[];
+  updatePortfolioCoins: (PortfolioCoinType & {
+    actualInfoCoin: number;
+    name: string;
+    symbol: string;
+  })[];
   value: number;
   finalValue: number;
   profit: number;
@@ -28,7 +32,11 @@ export const PortfolioProvider = ({ children }: PortfolioProviderProps) => {
   const coins = useSelector(selectCoins);
 
   const [updatePortfolioCoins, setUpdatePortfolioCoins] = useState<
-    (PortfolioCoinType & { actualInfoCoin: number })[]
+    (PortfolioCoinType & {
+      actualInfoCoin: number;
+      name: string;
+      symbol: string;
+    })[]
   >([]);
   useEffect(() => {
     const loadPortfolio = async () => {
@@ -40,6 +48,8 @@ export const PortfolioProvider = ({ children }: PortfolioProviderProps) => {
             return {
               ...item,
               actualInfoCoin: actualCoin.current_price,
+              name: actualCoin.name,
+              symbol: actualCoin.symbol,
             };
           }
 
@@ -48,6 +58,8 @@ export const PortfolioProvider = ({ children }: PortfolioProviderProps) => {
           return {
             ...item,
             actualInfoCoin: result[0].current_price,
+            name: result[0].name,
+            symbol: result[0].symbol,
           };
         }),
       );

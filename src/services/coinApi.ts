@@ -3,7 +3,7 @@ import type { CoinInListType } from "../components/CoinTable/CoinTable";
 
 const instance = axios.create({
   baseURL: "https://api.coingecko.com/api/v3/",
-  timeout: 1000,
+  timeout: 10000,
   headers: { "x-cg-demo-api-key": "CG-u2EU6sKP3S3S3Dk6HzLVdKXP" },
 });
 export type LoadingCoinListType =
@@ -48,7 +48,6 @@ export const loadCoinHistory = async (id: string) => {
         },
       },
     );
-
 
     return responce.data.prices;
   } catch (e) {
