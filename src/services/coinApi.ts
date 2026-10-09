@@ -4,7 +4,7 @@ import type { CoinInListType } from "../components/CoinTable/CoinTable";
 const instance = axios.create({
   baseURL: "https://api.coingecko.com/api/v3/",
   timeout: 10000,
-  headers: { "x-cg-demo-api-key": "CG-u2EU6sKP3S3S3Dk6HzLVdKXP" },
+  headers: { "x-cg-demo-api-key": import.meta.env.VITE_COINGECKO_API_KEY },
 });
 export type LoadingCoinListType =
   | { page: number }
