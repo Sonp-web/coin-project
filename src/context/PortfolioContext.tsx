@@ -1,8 +1,6 @@
 import { createContext, type ReactNode } from "react";
-import {
-  selectPortfolio,
-  type PortfolioCoinType,
-} from "../redux/slices/portfolioSlice";
+import { selectPortfolio } from "../redux/slices/portfolioSlice";
+import type { PortfolioCoinInfoType } from "../types/portfolio";
 import { selectCoins } from "../redux/slices/coinsSlice";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -12,11 +10,7 @@ type PortfolioProviderProps = {
 };
 
 type PortfolioContextType = {
-  updatePortfolioCoins: (PortfolioCoinType & {
-    actualInfoCoin: number;
-    name: string;
-    symbol: string;
-  })[];
+  updatePortfolioCoins: PortfolioCoinInfoType[];
   value: number;
   finalValue: number;
   profit: number;
@@ -32,11 +26,7 @@ export const PortfolioProvider = ({ children }: PortfolioProviderProps) => {
   const coins = useSelector(selectCoins);
 
   const [updatePortfolioCoins, setUpdatePortfolioCoins] = useState<
-    (PortfolioCoinType & {
-      actualInfoCoin: number;
-      name: string;
-      symbol: string;
-    })[]
+    PortfolioCoinInfoType[]
   >([]);
   useEffect(() => {
     const loadPortfolio = async () => {

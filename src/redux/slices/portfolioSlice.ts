@@ -1,10 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { PortfolioCoinType } from "../../types/portfolio";
 
-export type PortfolioCoinType = {
-  id: string;
-  count: number;
-  buyingPrice: number;
-};
 type PortfolioSliceType = {
   coins: PortfolioCoinType[];
 };
@@ -18,7 +14,7 @@ const portfolioSlice = createSlice({
     addCoin(state, action: PayloadAction<PortfolioCoinType>) {
       const temp = state.coins.find((item) => item.id === action.payload.id);
 
-      if (temp !== undefined) {
+      if (temp) {
         const oldPrice = temp.count * temp.buyingPrice;
         const newPrice =
           (oldPrice + action.payload.buyingPrice * action.payload.count) /

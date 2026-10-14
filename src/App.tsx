@@ -5,11 +5,8 @@ import { Coin } from "./pages/Coin/Coin";
 import { MainLayout } from "./layouts/MainLayout/MainLayout";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  refreshCoins,
-  type PortfolioCoinType,
-  selectPortfolio,
-} from "./redux/slices/portfolioSlice";
+import { refreshCoins, selectPortfolio } from "./redux/slices/portfolioSlice";
+import type { PortfolioCoinType } from "./types/portfolio";
 function App() {
   const portfolioCoins = useSelector(selectPortfolio);
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { CoinInListType } from "../../components/CoinTable/CoinTable";
-import { loadCoinList, type LoadingCoinListType } from "../../services/coinApi";
+import type { CoinInListType, LoadingCoinListType } from "../../types/coin";
+import { loadCoinList } from "../../services/coinApi";
 
 type CoinsSliceType = {
   coins: CoinInListType[];

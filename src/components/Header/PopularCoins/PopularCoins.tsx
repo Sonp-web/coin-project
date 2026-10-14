@@ -3,7 +3,7 @@ import { Coin } from "./Coin/Coin";
 import "./PopularCoins.css";
 import { useEffect, useState } from "react";
 import { loadCoinList } from "../../../services/coinApi";
-import type { CoinInListType } from "../../CoinTable/CoinTable";
+import type { CoinInListType } from "../../../types/coin";
 export const PopularCoins: React.FC = () => {
   const [popularCoins, setPopularCoins] = useState<CoinInListType[]>([]);
   useEffect(() => {

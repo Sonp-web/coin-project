@@ -1,5 +1,6 @@
 import { Col, Row } from "antd";
-import type { CoinInListType, CoinTableRowType } from "./CoinTable";
+import type { CoinTableRowType } from "./CoinTable";
+import type { CoinInListType } from "../../types/coin";
 import { Link } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
 import "./CoinRow.css";

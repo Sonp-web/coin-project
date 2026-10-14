@@ -1,19 +1,13 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import {
-  removeCoin,
-  type PortfolioCoinType,
-} from "../../../redux/slices/portfolioSlice";
+import { removeCoin } from "../../../redux/slices/portfolioSlice";
+import type { PortfolioCoinInfoType } from "../../../types/portfolio";
 import "./PortfolioRow.css";
 import { useDispatch } from "react-redux";
 import { CoinRowLogo } from "../../CoinTable/CoinRowLogo/CoinRowLogo";
 import { formatPrice } from "../../../utils/formatPrice";
 type PortfolioRowType = {
-  coin: PortfolioCoinType & {
-    actualInfoCoin: number;
-    name: string;
-    symbol: string;
-  };
+  coin: PortfolioCoinInfoType;
   closePortfolioModal: () => void;
 };
 export const PortfolioRow: React.FC<PortfolioRowType> = ({

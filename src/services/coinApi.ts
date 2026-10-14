@@ -1,16 +1,15 @@
 import axios from "axios";
-import type { CoinInListType } from "../components/CoinTable/CoinTable";
+import type {
+  CoinInListType,
+  LoadCoinHistoryType,
+  LoadingCoinListType,
+} from "../types/coin";
 
 const instance = axios.create({
   baseURL: "https://api.coingecko.com/api/v3/",
   timeout: 10000,
   headers: { "x-cg-demo-api-key": import.meta.env.VITE_COINGECKO_API_KEY },
 });
-export type LoadingCoinListType =
-  | { page: number }
-  | { id: string }
-  | { per_page: number };
-
 export const loadCoinList = async (param: LoadingCoinListType) => {
   try {
     let temp;
@@ -32,11 +31,6 @@ export const loadCoinList = async (param: LoadingCoinListType) => {
   }
 };
 
-type LoadCoinHistoryType = {
-  prices: number[][];
-  market_cap: number[][];
-  total_volumes: number[][];
-};
 export const loadCoinHistory = async (id: string) => {
   try {
     const responce = await instance.get<LoadCoinHistoryType>(

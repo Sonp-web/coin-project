@@ -1,5 +1,5 @@
 import "./CoinInfo.css";
-import type { CoinInListType } from "../../../components/CoinTable/CoinTable";
+import type { CoinInListType } from "../../../types/coin";
 import { formatPrice } from "../../../utils/formatPrice";
 import { formatCap } from "../../../utils/formatCap";
 import { formatNumber } from "../../../utils/formatNumber";

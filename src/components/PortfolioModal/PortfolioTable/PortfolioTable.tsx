@@ -1,13 +1,9 @@
 import { PortfolioRow } from "./PortfolioRow";
 import "./PortfolioTable.css";
-import { type PortfolioCoinType } from "../../../redux/slices/portfolioSlice";
+import type { PortfolioCoinInfoType } from "../../../types/portfolio";
 
 type PortfolioTableType = {
-  coins: (PortfolioCoinType & {
-    actualInfoCoin: number;
-    name: string;
-    symbol: string;
-  })[];
+  coins: PortfolioCoinInfoType[];
   closePortfolioModal: () => void;
 };
 export const PortfolioTable: React.FC<PortfolioTableType> = ({

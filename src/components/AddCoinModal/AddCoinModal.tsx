@@ -1,6 +1,6 @@
 import "./AddCoinModal.css";
 import { CoinForm } from "../CoinForm/CoinForm";
-import type { CoinInListType } from "../CoinTable/CoinTable";
+import type { CoinInListType } from "../../types/coin";
 import { CloseOutlined } from "@ant-design/icons";
 import { CoinRowLogo } from "../CoinTable/CoinRowLogo/CoinRowLogo";
 import { formatPrice } from "../../utils/formatPrice";

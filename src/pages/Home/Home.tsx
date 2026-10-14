@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { AddCoinModal } from "../../components/AddCoinModal/AddCoinModal";
-import {
-  CoinTable,
-  type CoinInListType,
-} from "../../components/CoinTable/CoinTable";
+import { CoinTable } from "../../components/CoinTable/CoinTable";
+import type { CoinInListType } from "../../types/coin";
 import { useSelector } from "react-redux";
 import { selectCoins } from "../../redux/slices/coinsSlice";
 import "./Home.css";
@@ -29,9 +27,9 @@ export const Home: React.FC = () => {
       <h1 className="home-title">Криптовалюты</h1>
       <p className="home-description">Топ-100 по капитализации</p>
       <CoinTable onAddClick={onAddClick} />
-      {isAddCoinModal && selectedCoin != null ? (
+      {isAddCoinModal && selectedCoin != null && (
         <AddCoinModal coin={selectedCoin} handleClose={handleClose} />
-      ) : null}
+      )}
     </div>
   );
 };
